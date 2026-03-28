@@ -1,0 +1,196 @@
+/* ==========================================================================
+   Gonzaga University — Brand Design Tokens
+   Generated from official brand guidelines and gonzaga.edu implementation.
+   Drop this file into any project to access GU brand variables.
+   ========================================================================== */
+
+:root {
+   /* ===========================
+     PRIMARY COLORS
+     =========================== */
+
+   /* GU Blue — Primary brand color */
+   --gu-color-blue: #06274F;
+   --gu-color-blue-tint-30: #B4BECA;
+   --gu-color-blue-tint-50: #8293A7;
+   --gu-color-blue-tint-70: #506783;
+
+   /* Spokane River Blue */
+   --gu-color-river-blue: #5E8AB4;
+   --gu-color-river-blue-tint-30: #CEDBE8;
+   --gu-color-river-blue-tint-50: #AEC4D9;
+   --gu-color-river-blue-tint-70: #8EADCA;
+
+   /* Basalt */
+   --gu-color-basalt: #434854;
+   --gu-color-basalt-tint-30: #C6C8CB;
+   --gu-color-basalt-tint-50: #A1A3A9;
+   --gu-color-basalt-tint-70: #7B7E87;
+
+   /* ===========================
+     SECONDARY COLORS
+     =========================== */
+
+   /* Wheat */
+   --gu-color-wheat: #DECB99;
+   --gu-color-wheat-tint-30: #F5EFE0;
+   --gu-color-wheat-tint-50: #EEE5CC;
+   --gu-color-wheat-tint-70: #E7DAB7;
+
+   /* Ponderosa Pine */
+   --gu-color-pine: #928A41;
+   --gu-color-pine-tint-30: #DEDBC6;
+   --gu-color-pine-tint-50: #C8C4A0;
+   --gu-color-pine-tint-70: #B2AD7A;
+
+   /* Sunflower */
+   --gu-color-sunflower: #F1A12C;
+   --gu-color-sunflower-tint-30: #FAE2BF;
+   --gu-color-sunflower-tint-50: #F8D095;
+   --gu-color-sunflower-tint-70: #D5BD6B;
+
+   /* Trout */
+   --gu-color-trout: #5E788D;
+   --gu-color-trout-tint-30: #CED6DC;
+   --gu-color-trout-tint-50: #AEBBC6;
+   --gu-color-trout-tint-70: #8EA0AF;
+
+   /* Salmon */
+   --gu-color-salmon: #CB4147;
+   --gu-color-salmon-tint-30: #EFC6C7;
+   --gu-color-salmon-tint-50: #E5A0A3;
+   --gu-color-salmon-tint-70: #DA7A7E;
+
+   /* Lilac */
+   --gu-color-lilac: #90779A;
+   --gu-color-lilac-tint-30: #DDD6E0;
+   --gu-color-lilac-tint-50: #C7BBCC;
+   --gu-color-lilac-tint-70: #B19FB8;
+
+   /* ===========================
+     NEUTRAL / SURFACE COLORS
+     =========================== */
+   --gu-color-white: #FFFFFF;
+   --gu-color-light-gray: #F3F3F3;
+   --gu-color-light-gray-alt: #F5F5F5;
+   --gu-color-warm-beige: #E4E1DC;
+
+   /* ===========================
+     SEMANTIC ALIASES
+     =========================== */
+
+   /* Text */
+   --gu-color-text-primary: var(--gu-color-blue);
+   --gu-color-text-secondary: var(--gu-color-basalt);
+   --gu-color-text-muted: var(--gu-color-basalt-tint-50);
+   --gu-color-text-on-dark: var(--gu-color-white);
+   --gu-color-text-on-dark-warm: var(--gu-color-wheat);
+
+   /* Links */
+   --gu-color-link: var(--gu-color-river-blue);
+   --gu-color-link-visited: var(--gu-color-trout);
+
+   /* Backgrounds */
+   --gu-color-bg-page: var(--gu-color-white);
+   --gu-color-bg-dark: var(--gu-color-blue);
+   --gu-color-bg-light: var(--gu-color-light-gray);
+   --gu-color-bg-surface: var(--gu-color-white);
+
+   /* Accents */
+   --gu-color-accent-primary: var(--gu-color-wheat);
+   --gu-color-accent-secondary: var(--gu-color-sunflower);
+   --gu-color-accent-tertiary: var(--gu-color-salmon);
+
+   /* Buttons */
+   --gu-color-btn-primary-bg: var(--gu-color-blue);
+   --gu-color-btn-primary-text: var(--gu-color-white);
+   --gu-color-btn-secondary-bg: var(--gu-color-sunflower);
+   --gu-color-btn-secondary-text: var(--gu-color-blue);
+
+   /* Footer */
+   --gu-color-footer-bg: var(--gu-color-blue);
+   --gu-color-footer-text: var(--gu-color-warm-beige);
+
+   /* ===========================
+     TYPOGRAPHY
+     =========================== */
+
+   /* Font Families */
+   --gu-font-sans: "proxima-nova", "figtree", Arial, Helvetica, sans-serif;
+   --gu-font-serif: "adelle", "figtree", Georgia, serif;
+   --gu-font-display: "glodok", "figtree", sans-serif;
+
+   /* Font Sizes */
+   --gu-font-size-hero: 80px;
+   --gu-font-size-hero-mobile: 50px;
+   --gu-font-size-section: 55px;
+   --gu-font-size-section-mobile: 36px;
+   --gu-font-size-h1: 36px;
+   --gu-font-size-h1-mobile: 30px;
+   --gu-font-size-h2: 30px;
+   --gu-font-size-h2-mobile: 24px;
+   --gu-font-size-h3: 24px;
+   --gu-font-size-h3-mobile: 21px;
+   --gu-font-size-h4: 18px;
+   --gu-font-size-body: 18px;
+   --gu-font-size-lead: 21px;
+   --gu-font-size-small: 14px;
+   --gu-font-size-caption: 13px;
+   --gu-font-size-breadcrumb: 17px;
+
+   /* Line Heights */
+   --gu-line-height-tight: 1.1;
+   --gu-line-height-heading: 1.2;
+   --gu-line-height-subheading: 1.3;
+   --gu-line-height-lead: 1.4;
+   --gu-line-height-body: 1.6;
+
+   /* Font Weights */
+   --gu-font-weight-light: 300;
+   --gu-font-weight-regular: 400;
+   --gu-font-weight-medium: 500;
+   --gu-font-weight-semibold: 600;
+   --gu-font-weight-bold: 700;
+   --gu-font-weight-extrabold: 800;
+   --gu-font-weight-black: 900;
+
+   /* ===========================
+     SPACING
+     =========================== */
+   --gu-space-xs: 4px;
+   --gu-space-sm: 8px;
+   --gu-space-md: 16px;
+   --gu-space-lg: 24px;
+   --gu-space-xl: 32px;
+   --gu-space-2xl: 48px;
+   --gu-space-3xl: 64px;
+   --gu-space-4xl: 96px;
+
+   /* ===========================
+     LAYOUT
+     =========================== */
+   --gu-container-max-width: 1170px;
+   --gu-breakpoint-tablet: 768px;
+   --gu-breakpoint-desktop: 992px;
+   --gu-breakpoint-wide: 1200px;
+
+   /* ===========================
+     COMPONENTS
+     =========================== */
+
+   /* Border Radius */
+   --gu-border-radius: 5px;
+
+   /* Header */
+   --gu-header-height: 80px;
+   --gu-header-height-mobile: 60px;
+
+   /* Footer */
+   --gu-footer-padding-top: 60px;
+
+   /* Buttons */
+   --gu-btn-padding: 10px 15px;
+   --gu-btn-font-size: 14px;
+   --gu-btn-font-weight: 700;
+   --gu-btn-border-radius: 5px;
+}

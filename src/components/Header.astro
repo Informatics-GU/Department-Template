@@ -1,0 +1,279 @@
+---
+import { DEPARTMENT } from "../config";
+
+const base = import.meta.env.BASE_URL;
+const pathname = Astro.url.pathname;
+
+const navItems = [
+  { text: "Home", href: base },
+  { text: "Programs", href: `${base}programs/` },
+  { text: "News", href: `${base}news/` },
+];
+---
+
+<header class="site-header">
+  <div class="header-title" style={`--header-bg-svg: url("${base}images/left-bg-blue.svg")`}>
+    <div class="header-logo-area">
+      <a href={base}>
+        <img
+          src={`${base}images/logo-gonzaga-university.png`}
+          alt="Gonzaga University"
+        />
+      </a>
+    </div>
+    <div class="header-dept-area">
+      <a href={base} class="header-dept-link">{DEPARTMENT.name}</a>
+    </div>
+    <button
+      class="header-menu-toggle"
+      aria-label="Toggle navigation"
+      aria-expanded="false"
+    >
+      <svg class="icon" viewBox="0 0 1792 1792" aria-hidden="true"><path fill="currentColor" d="M1664 1344v128q0 26-19 45t-45 19h-1408q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1408q26 0 45 19t19 45zm0-512v128q0 26-19 45t-45 19h-1408q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1408q26 0 45 19t19 45zm0-512v128q0 26-19 45t-45 19h-1408q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1408q26 0 45 19t19 45z"/></svg>
+    </button>
+  </div>
+
+  <nav class="header-nav" aria-label="Main navigation">
+    <div class="container">
+      <ul class="header-nav-list">
+        {
+          navItems.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                class:list={[
+                  "header-nav-link",
+                  { active: pathname === item.href },
+                ]}
+              >
+                {item.text}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </nav>
+
+  <div class="header-mobile-nav">
+    <div class="container">
+      <ul class="header-mobile-list">
+        {
+          navItems.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                class:list={[
+                  "header-mobile-link",
+                  { active: pathname === item.href },
+                ]}
+              >
+                {item.text}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</header>
+
+<script>
+  const toggle = document.querySelector(".header-menu-toggle");
+  const mobileNav = document.querySelector(".header-mobile-nav");
+  if (toggle && mobileNav) {
+    toggle.addEventListener("click", () => {
+      const expanded = toggle.getAttribute("aria-expanded") === "true";
+      toggle.setAttribute("aria-expanded", String(!expanded));
+      mobileNav.classList.toggle("open");
+    });
+  }
+</script>
+
+<style is:global>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .header-title {
+    display: flex;
+    align-items: center;
+    background-color: var(--gu-color-white);
+    height: 80px;
+    position: relative;
+  }
+
+  .header-logo-area {
+    width: 25%;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 0 20px;
+    background-color: var(--gu-color-river-blue);
+    position: relative;
+    z-index: 1;
+    overflow: visible;
+  }
+
+  .header-logo-area::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 100%;
+    width: 60px;
+    height: 100%;
+    background: var(--header-bg-svg) no-repeat right top;
+    background-size: auto 100%;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  .header-logo-area a {
+    display: block;
+    line-height: 0;
+  }
+
+  .header-logo-area img {
+    height: 40px;
+    width: auto;
+    max-width: none;
+  }
+
+  .header-dept-area {
+    display: flex;
+    align-items: center;
+    padding: 0 32px 0 64px;
+    flex-grow: 1;
+  }
+
+  .header-dept-link {
+    margin-left: 2.5rem;
+    font-family: var(--gu-font-serif);
+    font-size: var(--gu-font-size-h2);
+    font-weight: var(--gu-font-weight-bold);
+    color: var(--gu-color-river-blue);
+    text-decoration: none;
+  }
+
+  .header-dept-link:hover {
+    text-decoration: underline;
+  }
+
+  .header-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--gu-color-blue);
+    padding: 16px 24px;
+    margin-left: auto;
+  }
+
+  .header-menu-toggle .icon {
+    width: 22px;
+    height: 22px;
+  }
+
+  .header-nav {
+    background-color: var(--gu-color-wheat-tint-50);
+    border-top: 1px solid var(--gu-color-wheat-tint-50);
+    border-bottom: 1px solid var(--gu-color-wheat-tint-50);
+    padding: 8px 0;
+  }
+
+  .header-nav-list {
+    display: flex;
+    list-style: none;
+    gap: 48px;
+    align-items: center;
+  }
+
+  .header-nav-link {
+    display: block;
+    color: var(--gu-color-blue);
+    font-size: var(--gu-font-size-breadcrumb);
+    font-weight: var(--gu-font-weight-bold);
+    padding: 8px 0;
+    transition: color 0.2s ease;
+  }
+
+  .header-nav-link:hover,
+  .header-nav-link.active {
+    color: var(--gu-color-basalt);
+  }
+
+  .header-mobile-nav {
+    display: none;
+    background-color: var(--gu-color-white);
+    border-bottom: 1px solid var(--gu-color-basalt-tint-30);
+  }
+
+  .header-mobile-nav.open {
+    display: block;
+  }
+
+  .header-mobile-list {
+    list-style: none;
+    padding: 16px 0;
+  }
+
+  .header-mobile-link {
+    display: block;
+    color: var(--gu-color-blue);
+    font-size: var(--gu-font-size-body);
+    font-weight: var(--gu-font-weight-bold);
+    text-decoration: underline;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--gu-color-basalt-tint-30);
+  }
+
+  .header-mobile-link:hover,
+  .header-mobile-link.active {
+    color: var(--gu-color-river-blue);
+  }
+
+  @media (max-width: 810px) {
+    .header-dept-link {
+      margin-left: 4rem;
+      font-size: var(--gu-font-size-body);
+    }
+  }
+
+  @media (max-width: 500px) {
+    .header-dept-link {
+      margin-left: 4rem;
+      font-size: var(--gu-font-size-small);
+    }
+  }
+
+  @media (max-width: 767px) {
+    .header-title {
+      height: 60px;
+      background-size: 40% 100%;
+    }
+
+    .header-logo-area {
+      width: 35%;
+    }
+
+    .header-logo-area img {
+      height: 30px;
+    }
+
+    .header-dept-area {
+      padding: 0 16px;
+    }
+
+    .header-menu-toggle {
+      display: block;
+    }
+
+    .header-nav {
+      display: none;
+    }
+  }
+</style>

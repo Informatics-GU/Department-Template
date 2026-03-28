@@ -1,0 +1,112 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const news = await getCollection("news");
+  return news.map((article) => ({
+    params: { slug: article.id },
+    props: article,
+  }));
+}
+
+const base = import.meta.env.BASE_URL;
+const article = Astro.props;
+const { Content } = await render(article);
+
+const formattedDate = article.data.date.toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+---
+
+<BaseLayout title={article.data.title} description={article.data.description}>
+  <section class="section">
+    <div class="container article-detail">
+      <nav class="breadcrumbs">
+        <a href={base}>Home</a>
+        <span class="breadcrumb-sep">/</span>
+        <a href={`${base}news/`}>News</a>
+        <span class="breadcrumb-sep">/</span>
+        <span>{article.data.title}</span>
+      </nav>
+
+      <header class="article-header">
+        <time class="article-date" datetime={article.data.date.toISOString()}>
+          {formattedDate}
+        </time>
+        <h1>{article.data.title}</h1>
+        <p class="article-lead">{article.data.description}</p>
+      </header>
+
+      <div class="article-content">
+        <Content />
+      </div>
+
+      <footer class="article-footer">
+        <a href={`${base}news/`} class="btn btn-outline">&larr; All News</a>
+      </footer>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .article-detail {
+    max-width: 800px;
+  }
+
+  .breadcrumbs {
+    font-size: var(--gu-font-size-breadcrumb);
+    margin-bottom: var(--gu-space-xl);
+    color: var(--gu-color-text-muted);
+  }
+
+  .breadcrumb-sep {
+    margin: 0 var(--gu-space-sm);
+  }
+
+  .article-header {
+    margin-bottom: var(--gu-space-2xl);
+  }
+
+  .article-date {
+    display: block;
+    font-size: var(--gu-font-size-breadcrumb);
+    font-weight: var(--gu-font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--gu-color-river-blue);
+    margin-bottom: var(--gu-space-md);
+  }
+
+  .article-header h1 {
+    margin-bottom: var(--gu-space-md);
+  }
+
+  .article-lead {
+    font-size: var(--gu-font-size-lead);
+    color: var(--gu-color-text-secondary);
+    line-height: var(--gu-line-height-lead);
+  }
+
+  .article-content :global(h2) {
+    margin-top: var(--gu-space-2xl);
+    margin-bottom: var(--gu-space-md);
+  }
+
+  .article-content :global(ul) {
+    padding-left: var(--gu-space-lg);
+    margin-bottom: var(--gu-space-md);
+  }
+
+  .article-content :global(li) {
+    margin-bottom: var(--gu-space-sm);
+  }
+
+  .article-footer {
+    margin-top: var(--gu-space-2xl);
+    padding-top: var(--gu-space-xl);
+    border-top: 1px solid var(--gu-color-basalt-tint-30);
+  }
+</style>

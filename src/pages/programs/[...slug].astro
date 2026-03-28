@@ -1,0 +1,112 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { DEPARTMENT } from "../../config";
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const programs = await getCollection("programs");
+  return programs.map((program) => ({
+    params: { slug: program.id },
+    props: program,
+  }));
+}
+
+const base = import.meta.env.BASE_URL;
+const program = Astro.props;
+const { Content } = await render(program);
+---
+
+<BaseLayout title={program.data.title} description={program.data.description}>
+  <section class="section">
+    <div class="container program-detail">
+      <nav class="breadcrumbs">
+        <a href={base}>Home</a>
+        <span class="breadcrumb-sep">/</span>
+        <a href={`${base}programs/`}>Programs</a>
+        <span class="breadcrumb-sep">/</span>
+        <span>{program.data.title}</span>
+      </nav>
+
+      <header class="program-header">
+        <span class="program-degree-badge">{program.data.degree}</span>
+        <h1>{program.data.title}</h1>
+        <p class="program-lead">{program.data.description}</p>
+      </header>
+
+      <div class="program-content">
+        <Content />
+      </div>
+
+      <div class="program-actions">
+        <a href="https://www.gonzaga.edu/apply" class="btn btn-primary">Apply Now</a>
+        <a href={DEPARTMENT.ctas.secondary.url} class="btn btn-outline">{DEPARTMENT.ctas.secondary.text}</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .breadcrumbs {
+    font-size: var(--gu-font-size-breadcrumb);
+    margin-bottom: var(--gu-space-xl);
+    color: var(--gu-color-text-muted);
+  }
+
+  .breadcrumb-sep {
+    margin: 0 var(--gu-space-sm);
+  }
+
+  .program-header {
+    margin-bottom: var(--gu-space-2xl);
+  }
+
+  .program-degree-badge {
+    display: inline-block;
+    font-size: var(--gu-font-size-breadcrumb);
+    font-weight: var(--gu-font-weight-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--gu-color-river-blue);
+    background-color: var(--gu-color-river-blue-tint-30);
+    padding: var(--gu-space-xs) var(--gu-space-md);
+    border-radius: var(--gu-border-radius);
+    margin-bottom: var(--gu-space-md);
+  }
+
+  .program-header h1 {
+    margin-bottom: var(--gu-space-md);
+  }
+
+  .program-lead {
+    font-size: var(--gu-font-size-lead);
+    color: var(--gu-color-text-secondary);
+    line-height: var(--gu-line-height-lead);
+  }
+
+  .program-detail {
+    max-width: 800px;
+  }
+
+  .program-content :global(h2) {
+    margin-top: var(--gu-space-2xl);
+    margin-bottom: var(--gu-space-md);
+  }
+
+  .program-content :global(ul) {
+    padding-left: var(--gu-space-lg);
+    margin-bottom: var(--gu-space-md);
+  }
+
+  .program-content :global(li) {
+    margin-bottom: var(--gu-space-sm);
+  }
+
+  .program-actions {
+    margin-top: var(--gu-space-2xl);
+    padding-top: var(--gu-space-xl);
+    border-top: 1px solid var(--gu-color-basalt-tint-30);
+    display: flex;
+    gap: var(--gu-space-md);
+    flex-wrap: wrap;
+  }
+</style>

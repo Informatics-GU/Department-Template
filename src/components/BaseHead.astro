@@ -1,0 +1,40 @@
+---
+import "../styles/global.css";
+import { DEPARTMENT } from "../config";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const base = import.meta.env.BASE_URL;
+const { title, description = "" } = Astro.props;
+const pageTitle = `${title} | ${DEPARTMENT.name} | ${DEPARTMENT.university}`;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="generator" content={Astro.generator} />
+
+<title>{pageTitle}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalURL} />
+<link rel="icon" href={`${base}images/favicon.ico`} type="image/x-icon" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content={pageTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonicalURL} />
+
+<!-- Fonts: Adobe Typekit (Proxima Nova, Adelle, Glodok) -->
+<link rel="stylesheet" href="https://use.typekit.net/zaj3ayb.css" />
+
+<!-- Fallback: Figtree from Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700;800;900&display=swap"
+  rel="stylesheet"
+/>

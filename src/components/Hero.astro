@@ -1,0 +1,88 @@
+---
+import { DEPARTMENT } from "../config";
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  showCtas?: boolean;
+}
+
+const {
+  title = DEPARTMENT.name,
+  subtitle = DEPARTMENT.tagline,
+  showCtas = true,
+} = Astro.props;
+---
+
+<section class="hero">
+  <div class="container hero-inner">
+    <h1 class="hero-title">{title}</h1>
+    {subtitle && <p class="hero-subtitle">{subtitle}</p>}
+    {showCtas && (
+      <div class="hero-ctas">
+        <a href={DEPARTMENT.ctas.primary.url} class="btn btn-secondary">
+          {DEPARTMENT.ctas.primary.text}
+        </a>
+        <a href={DEPARTMENT.ctas.secondary.url} class="btn btn-outline hero-btn-outline">
+          {DEPARTMENT.ctas.secondary.text}
+        </a>
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  .hero {
+    background-color: var(--gu-color-bg-dark);
+    color: var(--gu-color-text-on-dark);
+    padding: var(--gu-space-4xl) 0;
+  }
+
+  .hero-inner {
+    text-align: center;
+  }
+
+  .hero-title {
+    font-family: var(--gu-font-serif);
+    font-size: var(--gu-font-size-section);
+    font-weight: var(--gu-font-weight-bold);
+    color: var(--gu-color-text-on-dark);
+    margin-bottom: var(--gu-space-lg);
+    line-height: var(--gu-line-height-tight);
+  }
+
+  .hero-subtitle {
+    font-size: var(--gu-font-size-lead);
+    line-height: var(--gu-line-height-lead);
+    color: var(--gu-color-warm-beige);
+    max-width: 700px;
+    margin: 0 auto var(--gu-space-xl);
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: var(--gu-space-md);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .hero-btn-outline {
+    color: var(--gu-color-white);
+    border-color: var(--gu-color-white);
+  }
+
+  .hero-btn-outline:hover {
+    background-color: var(--gu-color-white);
+    color: var(--gu-color-blue);
+  }
+
+  @media (max-width: 767px) {
+    .hero {
+      padding: var(--gu-space-3xl) 0;
+    }
+
+    .hero-title {
+      font-size: var(--gu-font-size-section-mobile);
+    }
+  }
+</style>

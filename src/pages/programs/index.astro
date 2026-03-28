@@ -1,0 +1,32 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Hero from "../../components/Hero.astro";
+import ProgramCard from "../../components/ProgramCard.astro";
+import { getCollection } from "astro:content";
+
+const allPrograms = await getCollection("programs");
+const programs = allPrograms.sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout title="Programs" description="Explore undergraduate programs and minors at the School of Business Administration.">
+  <Hero
+    title="Programs"
+    subtitle="Explore our undergraduate degrees and minors rooted in Jesuit business education."
+    showCtas={false}
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="card-grid">
+        {programs.map((program) => (
+          <ProgramCard
+            title={program.data.title}
+            degree={program.data.degree}
+            description={program.data.description}
+            slug={program.id}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,211 @@
+---
+import { DEPARTMENT } from "../config";
+
+const base = import.meta.env.BASE_URL;
+---
+
+<footer class="site-footer">
+  <!-- Main footer: Quick Links + Logo/Contact side by side -->
+  <div class="footer-main">
+    <div class="container">
+      <div class="footer-columns">
+        <!-- Left: Quick Links + Tagline -->
+        <div class="footer-links-col">
+          <h6 class="footer-heading">Quick Links</h6>
+          <div class="footer-links-grid">
+            <a href={`${base}programs/`}>Programs</a>
+            <a href={`${base}news/`}>News & Stories</a>
+            <a href="https://www.gonzaga.edu/maps">Maps & Directions</a>
+            <a href="https://employment.gonzaga.edu">Careers</a>
+            <a href="https://www.gonzaga.edu/emergency">Emergency Information</a
+            >
+            <a href="https://www.gonzaga.edu/privacy-policy">Privacy Policy</a>
+            <a href="https://www.gonzaga.edu/accessibility">Accessibility</a>
+            <a href="https://zagmail.gonzaga.edu/">ZagMail</a>
+            <a href="https://my.gonzaga.edu">myGU Intranet</a>
+            <a href="https://tour.gonzaga.edu/virtualtour/#virtualtour"
+              >Virtual Tour</a
+            >
+          </div>
+          <a
+            href="https://www.gonzaga.edu/about/mission"
+            class="footer-tagline"
+          >
+            A Jesuit, Catholic, Humanistic University
+          </a>
+        </div>
+
+        <!-- Right: Logo, Address, Social -->
+        <div class="footer-brand-col">
+          <img
+            src={`${base}images/logo-footer-gonzaga-university.png`}
+            alt="Gonzaga University"
+            class="footer-logo"
+          />
+          <div class="footer-contact">
+            <p>{DEPARTMENT.address}</p>
+            <p><a href={`tel:${DEPARTMENT.phone}`}>{DEPARTMENT.phone}</a></p>
+          </div>
+          <div class="footer-social">
+            {
+              DEPARTMENT.social.facebook && (
+                <a href={DEPARTMENT.social.facebook} aria-label="Facebook">
+                  <svg class="icon" viewBox="0 0 1792 1792" aria-hidden="true"><path fill="currentColor" d="M1343 12v264h-157q-86 0-116 36t-30 108v189h293l-39 296h-254v759h-306v-759h-255v-296h255v-218q0-186 104-288.5t277-102.5q147 0 228 12z"/></svg>
+                </a>
+              )
+            }
+            {
+              DEPARTMENT.social.instagram && (
+                <a href={DEPARTMENT.social.instagram} aria-label="Instagram">
+                  <svg class="icon" viewBox="0 0 1792 1792" aria-hidden="true"><path fill="currentColor" d="M1152 896q0-106-75-181t-181-75-181 75-75 181 75 181 181 75 181-75 75-181zm138 0q0 164-115 279t-279 115-279-115-115-279 115-279 279-115 279 115 115 279zm108-410q0 38-27 65t-65 27-65-27-27-65 27-65 65-27 65 27 27 65zm-502-220q-7 0-76.5-.5t-105.5 0-96.5 3-103 10-71.5 18.5q-50 20-88 58t-58 88q-11 29-18.5 71.5t-10 103-3 96.5 0 105.5.5 76.5-.5 76.5 0 105.5 3 96.5 10 103 18.5 71.5q20 50 58 88t88 58q29 11 71.5 18.5t103 10 96.5 3 105.5 0 76.5-.5 76.5.5 105.5 0 96.5-3 103-10 71.5-18.5q50-20 88-58t58-88q11-29 18.5-71.5t10-103 3-96.5 0-105.5-.5-76.5.5-76.5 0-105.5-3-96.5-10-103-18.5-71.5q-20-50-58-88t-88-58q-29-11-71.5-18.5t-103-10-96.5-3-105.5 0-76.5.5zm768 630q0 229-5 317-10 208-124 322t-322 124q-88 5-317 5t-317-5q-208-10-322-124t-124-322q-5-88-5-317t5-317q10-208 124-322t322-124q88-5 317-5t317 5q208 10 322 124t124 322q5 88 5 317z"/></svg>
+                </a>
+              )
+            }
+            {
+              DEPARTMENT.social.linkedin && (
+                <a href={DEPARTMENT.social.linkedin} aria-label="LinkedIn">
+                  <svg class="icon" viewBox="0 0 1792 1792" aria-hidden="true"><path fill="currentColor" d="M477 625v991h-330v-991h330zm21-306q1 73-50.5 122t-135.5 49h-2q-82 0-132-49t-50-122q0-74 51.5-122.5t134.5-48.5 133 48.5 51 122.5zm1166 729v568h-329v-530q0-105-40.5-164.5t-126.5-59.5q-63 0-105.5 34.5t-63.5 85.5q-11 30-11 81v553h-329q2-399 2-647t-1-296l-1-48h329v144h-2q20-32 41-56t56.5-52 87-43.5 114.5-15.5q171 0 275 113.5t104 332.5z"/></svg>
+                </a>
+              )
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background-color: var(--gu-color-footer-bg);
+    color: var(--gu-color-footer-text);
+  }
+
+  /* Main footer area */
+  .footer-main {
+    padding: var(--gu-space-3xl) 0;
+  }
+
+  .footer-columns {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: var(--gu-space-3xl);
+    align-items: start;
+  }
+
+  @media (max-width: 767px) {
+    .footer-columns {
+      grid-template-columns: 1fr;
+      gap: var(--gu-space-2xl);
+    }
+  }
+
+  /* Quick Links */
+  .footer-heading {
+    font-family: var(--gu-font-sans);
+    font-size: var(--gu-font-size-h4);
+    font-weight: var(--gu-font-weight-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--gu-color-white);
+    margin-bottom: var(--gu-space-lg);
+  }
+
+  .footer-links-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--gu-space-sm) var(--gu-space-xl);
+  }
+
+  @media (min-width: 768px) {
+    .footer-links-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (min-width: 992px) {
+    .footer-links-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .footer-links-grid a {
+    font-size: var(--gu-font-size-body);
+    font-weight: var(--gu-font-weight-bold);
+    color: var(--gu-color-footer-text);
+    text-decoration: none;
+    line-height: var(--gu-line-height-body);
+  }
+
+  .footer-links-grid a:hover {
+    color: var(--gu-color-white);
+    text-decoration: underline;
+  }
+
+  /* Brand column */
+  .footer-brand-col {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gu-space-lg);
+  }
+
+  .footer-logo {
+    display: block;
+    width: 200px;
+    height: auto;
+  }
+
+  .footer-contact p {
+    font-size: var(--gu-font-size-small);
+    color: var(--gu-color-footer-text);
+    margin-bottom: var(--gu-space-xs);
+    line-height: var(--gu-line-height-lead);
+  }
+
+  .footer-contact a {
+    color: var(--gu-color-footer-text);
+    text-decoration: none;
+  }
+
+  .footer-contact a:hover {
+    color: var(--gu-color-white);
+    text-decoration: underline;
+  }
+
+  .footer-tagline {
+    display: block;
+    margin-top: var(--gu-space-xl);
+    font-family: var(--gu-font-serif);
+    font-size: var(--gu-font-size-body);
+    font-weight: var(--gu-font-weight-bold);
+    color: var(--gu-color-footer-text);
+    text-decoration: none;
+  }
+
+  .footer-tagline:hover {
+    color: var(--gu-color-white);
+    text-decoration: underline;
+  }
+
+  /* Social icons */
+  .footer-social {
+    display: flex;
+    gap: var(--gu-space-lg);
+  }
+
+  .footer-social a {
+    color: var(--gu-color-river-blue);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .footer-social .icon {
+    width: 25px;
+    height: 25px;
+  }
+
+  .footer-social a:hover {
+    color: var(--gu-color-trout);
+    text-decoration: none;
+  }
+</style>

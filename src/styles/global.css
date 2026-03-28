@@ -1,0 +1,209 @@
+@import "./tokens.css";
+
+/* ==========================================================================
+   Global Styles — GU Department Theme
+   ========================================================================== */
+
+/* Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Base */
+html {
+  font-size: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--gu-font-sans);
+  font-size: var(--gu-font-size-body);
+  line-height: var(--gu-line-height-body);
+  color: var(--gu-color-text-primary);
+  background-color: var(--gu-color-bg-page);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography */
+h1,
+h2,
+h3 {
+  font-family: var(--gu-font-serif);
+  font-weight: var(--gu-font-weight-bold);
+  color: var(--gu-color-text-primary);
+  line-height: var(--gu-line-height-heading);
+}
+
+h4,
+h5,
+h6 {
+  font-family: var(--gu-font-sans);
+  font-weight: var(--gu-font-weight-semibold);
+  line-height: var(--gu-line-height-lead);
+}
+
+h1 {
+  font-size: var(--gu-font-size-h1);
+}
+h2 {
+  font-size: var(--gu-font-size-h2);
+}
+h3 {
+  font-size: var(--gu-font-size-h3);
+}
+h4 {
+  font-size: var(--gu-font-size-h4);
+}
+
+p {
+  margin-bottom: var(--gu-space-md);
+}
+
+a {
+  color: var(--gu-color-link);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Utilities */
+.container {
+  width: 100%;
+  max-width: var(--gu-container-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--gu-space-lg);
+  padding-right: var(--gu-space-lg);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  font-family: var(--gu-font-sans);
+  font-size: var(--gu-btn-font-size);
+  font-weight: var(--gu-btn-font-weight);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: var(--gu-btn-padding);
+  border-radius: var(--gu-btn-border-radius);
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.btn-primary {
+  background-color: var(--gu-color-btn-primary-bg);
+  color: var(--gu-color-btn-primary-text);
+}
+
+.btn-primary:hover {
+  background-color: var(--gu-color-blue-tint-70);
+  text-decoration: none;
+}
+
+.btn-secondary {
+  background-color: var(--gu-color-btn-secondary-bg);
+  color: var(--gu-color-btn-secondary-text);
+}
+
+.btn-secondary:hover {
+  background-color: var(--gu-color-btn-primary-bg);
+  color: var(--gu-color-btn-primary-text);
+  text-decoration: none;
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--gu-color-blue);
+  border: 2px solid var(--gu-color-blue);
+}
+
+.btn-outline:hover {
+  background-color: var(--gu-color-blue);
+  color: var(--gu-color-white);
+  text-decoration: none;
+}
+
+/* Section spacing */
+.section {
+  padding-top: var(--gu-space-3xl);
+  padding-bottom: var(--gu-space-3xl);
+}
+
+.section-light {
+  background-color: var(--gu-color-bg-light);
+}
+
+.section-dark {
+  background-color: var(--gu-color-bg-dark);
+  color: var(--gu-color-text-on-dark);
+}
+
+.section-dark h1,
+.section-dark h2,
+.section-dark h3,
+.section-dark h4 {
+  color: var(--gu-color-text-on-dark);
+}
+
+.section-dark a {
+  color: var(--gu-color-wheat);
+}
+
+/* Card grid */
+.card-grid {
+  display: grid;
+  gap: var(--gu-space-lg);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 992px) {
+  .card-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Responsive typography */
+@media (max-width: 767px) {
+  h1 {
+    font-size: var(--gu-font-size-h1-mobile);
+  }
+  h2 {
+    font-size: var(--gu-font-size-h2-mobile);
+  }
+  h3 {
+    font-size: var(--gu-font-size-h3-mobile);
+  }
+}

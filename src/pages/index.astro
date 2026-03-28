@@ -1,0 +1,162 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import ProgramCard from "../components/ProgramCard.astro";
+import NewsCard from "../components/NewsCard.astro";
+import { DEPARTMENT } from "../config";
+import { getCollection } from "astro:content";
+
+const allPrograms = await getCollection("programs");
+const featuredPrograms = allPrograms
+  .filter((p) => p.data.featured)
+  .sort((a, b) => a.data.order - b.data.order);
+
+const base = import.meta.env.BASE_URL;
+const allNews = await getCollection("news");
+const recentNews = allNews
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 3);
+---
+
+<BaseLayout
+  title="Home"
+  description={`${DEPARTMENT.name} at ${DEPARTMENT.university}. ${DEPARTMENT.tagline}`}
+>
+  <Hero />
+
+  <!-- Highlights -->
+  <section class="section section-light">
+    <div class="container">
+      <div class="highlights-grid">
+        <div class="highlight">
+          <span class="highlight-accent"></span>
+          <h3>Top 10</h3>
+          <p>Ranked among the top 10 schools to study business</p>
+        </div>
+        <div class="highlight">
+          <span class="highlight-accent highlight-accent-2"></span>
+          <h3>AACSB</h3>
+          <p>Accredited in both business and accounting — fewer than 2% worldwide</p>
+        </div>
+        <div class="highlight">
+          <span class="highlight-accent highlight-accent-3"></span>
+          <h3>90%+</h3>
+          <p>Of full-time faculty hold a Ph.D. or J.D.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Programs -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-heading">Programs</h2>
+      <p class="section-subheading">
+        Our undergraduate programs rank within the top 100 schools of business nationwide.
+      </p>
+      <div class="card-grid">
+        {featuredPrograms.map((program) => (
+          <ProgramCard
+            title={program.data.title}
+            degree={program.data.degree}
+            description={program.data.description}
+            slug={program.id}
+          />
+        ))}
+      </div>
+      <div class="section-footer">
+        <a href={`${base}programs/`} class="btn btn-outline">View All Programs</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recent News -->
+  <section class="section section-light">
+    <div class="container">
+      <h2 class="section-heading">News & Stories</h2>
+      <p class="section-subheading">
+        See our latest news, upcoming events, and student achievements.
+      </p>
+      <div class="card-grid">
+        {recentNews.map((article) => (
+          <NewsCard
+            title={article.data.title}
+            date={article.data.date}
+            description={article.data.description}
+            slug={article.id}
+          />
+        ))}
+      </div>
+      <div class="section-footer">
+        <a href={`${base}news/`} class="btn btn-outline">All News</a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .highlights-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--gu-space-xl);
+    text-align: center;
+  }
+
+  @media (min-width: 768px) {
+    .highlights-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .highlight {
+    padding: var(--gu-space-xl);
+  }
+
+  .highlight-accent {
+    display: block;
+    width: 48px;
+    height: 4px;
+    background-color: var(--gu-color-wheat);
+    margin: 0 auto var(--gu-space-md);
+    border-radius: 2px;
+  }
+
+  .highlight-accent-2 {
+    background-color: var(--gu-color-sunflower);
+  }
+
+  .highlight-accent-3 {
+    background-color: var(--gu-color-salmon);
+  }
+
+  .highlight h3 {
+    font-family: var(--gu-font-serif);
+    font-size: var(--gu-font-size-h1);
+    color: var(--gu-color-blue);
+    margin-bottom: var(--gu-space-sm);
+  }
+
+  .highlight p {
+    font-size: var(--gu-font-size-small);
+    color: var(--gu-color-text-secondary);
+  }
+
+  .section-heading {
+    text-align: center;
+    margin-bottom: var(--gu-space-sm);
+  }
+
+  .section-subheading {
+    text-align: center;
+    font-size: var(--gu-font-size-lead);
+    color: var(--gu-color-text-secondary);
+    max-width: 600px;
+    margin: 0 auto var(--gu-space-2xl);
+  }
+
+  .section-footer {
+    text-align: center;
+    margin-top: var(--gu-space-2xl);
+  }
+</style>
