@@ -18,6 +18,5 @@ export const DEPARTMENT = {
       text: "Request Info",
       url: "https://www.gonzaga.edu/request-info",
     },
-    tertiary: { text: "Visit Campus", url: "https://www.gonzaga.edu/visit" },
   },
 };
